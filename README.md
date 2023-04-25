@@ -1,5 +1,11 @@
 An app template for large Flask applications with Flask-SQLAlchemy integration. The application has the following structure:
 
+instala...
+
+flask run --debug
+
+configura banco no extensions.py
+
 ```
 .
 ├── app
