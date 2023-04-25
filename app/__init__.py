@@ -16,6 +16,9 @@ def create_app(config_class=Config):
     from app.routes import questions_bp
     app.register_blueprint(questions_bp, url_prefix='/questions')
 
+    with app.app_context():
+        db.create_all()
+
     @app.route('/test/')
     def test_page():
         return '<h1>Testing the Flask Application Factory Pattern</h1>'
