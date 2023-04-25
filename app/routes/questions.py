@@ -1,5 +1,5 @@
-from flask import render_template, request, url_for, redirect
-from app.questions import bp
+from flask import request
+from app.routes import questions_bp as bp
 from app.models.question import Question
 from app.extensions import db
 

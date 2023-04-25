@@ -10,10 +10,10 @@ def create_app(config_class=Config):
     # Initialize Flask extensions here
     db.init_app(app)
 
-    from app.posts import bp as posts_bp
+    from app.routes import posts_bp
     app.register_blueprint(posts_bp, url_prefix='/posts')
 
-    from app.questions import bp as questions_bp
+    from app.routes import questions_bp
     app.register_blueprint(questions_bp, url_prefix='/questions')
 
     @app.route('/test/')
