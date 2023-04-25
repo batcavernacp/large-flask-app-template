@@ -1,8 +1,22 @@
 An app template for large Flask applications with Flask-SQLAlchemy integration. The application has the following structure:
 
-pip install -r requirements.txt (no codespace não precisa)
+## Add secret
 
-flask run --debug
+- DATABASE_URI=postgresql://postgres:postgres@db/postgres
+
+## Install dependencies
+
+### codespace
+
+already installed
+
+### others
+
+```pip install -r requirements.txt```
+
+## run
+
+```flask run --debug```
 
 ```
 .
