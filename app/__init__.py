@@ -10,10 +10,6 @@ def create_app(config_class=Config):
     # Initialize Flask extensions here
     db.init_app(app)
 
-    # Register blueprints here
-    from app.main import bp as main_bp
-    app.register_blueprint(main_bp)
-
     from app.posts import bp as posts_bp
     app.register_blueprint(posts_bp, url_prefix='/posts')
 
