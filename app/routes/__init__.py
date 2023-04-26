@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 posts_bp = Blueprint('posts', __name__)
 import app.routes.posts
