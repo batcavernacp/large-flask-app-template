@@ -1,16 +1,24 @@
-from app.routes import posts_bp as bp
-from app.services.posts import getAllPosts, createPost
-from flask import request, json
+from flask_restful import Resource, reqparse
+from app.services.posts import get_posts, create_post, edit_post, delete_post, get_post
 
-@bp.get('/')
-def list():
-    return getAllPosts()
+parser = reqparse.RequestParser()
+parser.add_argument('title', type=str, help='Title of the post')
+parser.add_argument('content', type=str, help='Content of the post')
 
-@bp.post('/')
-def create():
-    data = json.loads(request.data)
+class Posts(Resource):
+    def get(self, id=None):
+        if id:
+            return get_post(id).serialize()
+        return [post.serialize() for post in get_posts()]
 
-    new_post = createPost(data)
+    def post(self):
+        args = parser.parse_args()
+        new_post = create_post(args)
+        return new_post.serialize()
+        
+    def put(self, id):
+        args = parser.parse_args()
+        return edit_post(id, args).serialize()
 
-    return new_post.serialize()
-
+    def delete(self, id):
+        return delete_post(id).serialize()

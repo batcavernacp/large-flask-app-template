@@ -1,12 +1,7 @@
-from flask import Blueprint, jsonify
+from app.routes.posts import Posts
+from app.routes.questions import Questions
+from flask_restful import Api
 
-posts_bp = Blueprint('posts', __name__)
-import app.routes.posts
-
-
-questions_bp = Blueprint('questions', __name__)
-import app.routes.questions 
-
-def create(app):
-    app.register_blueprint(posts_bp, url_prefix='/posts')
-    app.register_blueprint(questions_bp, url_prefix='/questions')
+def setup_api(api: Api):
+    api.add_resource(Posts, '/posts', '/posts/<int:id>')
+    api.add_resource(Questions, '/questions', '/questions/<int:id>')
