@@ -1,7 +1,6 @@
 from app.routes import posts_bp as bp
-from app.models.post import Post
+from app.services.posts import getAllPosts
 
 @bp.route('/')
 def index():
-    posts = Post.query.all()
-    return posts
+    return getAllPosts()
