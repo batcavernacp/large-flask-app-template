@@ -1,5 +1,5 @@
 from app.models.post import Post
-from app.extensions import db
+from app.extensions.database import db
 
 def get_posts():
     return Post.query.all()

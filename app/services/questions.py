@@ -1,5 +1,5 @@
 from app.models.question import Question
-from app.extensions import db
+from app.extensions.database import db
 
 def get_questions():
     return Question.query.all()

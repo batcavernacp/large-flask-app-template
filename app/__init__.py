@@ -1,25 +1,26 @@
 from flask import Flask
-from flask_restful import Api
 from config import Config
-from app.extensions import db
-from app.routes import setup_api
+
+from app.extensions.restful import setup_restful
+from app.extensions.database import db
+# from app.extensions.swagger import setup_swagger
+
 from app.seed import seed
 
 def create_app(config_class=Config):
     app = Flask(__name__)
 
-    api = Api(app)
-
     app.config.from_object(config_class)
 
     db.init_app(app)
-    
-    setup_api(api)
-
     with app.app_context():
         db.drop_all()
         db.create_all()
         seed()
+
+    setup_restful(app)
+    
+    # setup_swagger(app)
 
     @app.route('/')
     def test_page():

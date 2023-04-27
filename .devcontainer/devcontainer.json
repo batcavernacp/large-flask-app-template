@@ -20,7 +20,8 @@
 		"vscode": {
 			"extensions": [
 				"ms-python.python",
-				"ckolkman.vscode-postgres"
+				"ckolkman.vscode-postgres",
+				"GitHub.copilot"
 			]
 		}
 	}

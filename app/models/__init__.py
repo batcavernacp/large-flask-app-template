@@ -1,6 +1,7 @@
-from app.extensions import db
+from app.extensions.database import db
 from datetime import datetime
 from dataclasses import dataclass
+from marshmallow import Schema as BaseSchema, fields
 
 @dataclass
 class Model(db.Model):
@@ -24,3 +25,12 @@ class Model(db.Model):
             else:
                 serialized_data[column.name] = getattr(self, column.name)
         return serialized_data
+
+class Schema(BaseSchema):
+    __abstract__ = True
+
+    id = fields.Integer(dump_only=True)
+    created_at = fields.String(dump_only=True)
+    updated_at = fields.String(dump_only=True)
+    deleted = fields.Boolean(dump_only=True)
+    
